@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.UserManagerMapper">
+    <!--查询所有用户的信息-->
+  <select id="queryAllUsers" resultType="users">
+      select id,email,username,password,phoneNum,status from users
+  </select>
+    <!--查询所有的角色-->
+    <select id="queryAllRoles" resultType="role">
+        select id,roleName,roleDesc from role
+    </select>
+    <!--查询所有的权限-->
+    <select id="queryAllPermission" resultType="permission">
+       select id,permissionName,url from permission
+    </select>
+    <!--通过用户的id查询用户所对应的所有角色-->
+    <resultMap id="userRoleMap" type="users">
+       <id column="id" property="id"></id>
+        <result column="email" property="email"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="phoneNum" property="phoneNum"></result>
+        <result column="status" property="status"></result>
+        <!-- 配置角色集合的映射 -->
+        <collection property="roleList" javaType="list" ofType="role">
+            <id column="rid" property="id"></id>
+            <result  column="roleName" property="roleName"></result>
+            <result column="roleDesc" property="roleDesc" ></result>
+        </collection>
+    </resultMap>
+    <select id="queryRolesByUid" resultMap="userRoleMap">
+	select u.*,r.id rid,r.roleName,r.roleDesc from users u
+	 left outer join users_role ur  on u.id = ur.userId
+	 left outer join role r on r.id = ur.roleId where u.id = #{id}
+    </select>
+
+    <!--通过用户id查询用户角色所对应的权限-->
+    <resultMap id="rolePermissionMap" type="role">
+    <id column="id" property="id"></id>
+    <result column="roleName" property="roleName"></result>
+    <result column="roleDesc" property="roleDesc"></result>
+    <!-- 配置权限集合的映射 -->
+    <collection property="permissionList" javaType="list" ofType="permission">
+        <id column="pid" property="id"></id>
+        <result  column="permissionName" property="permissionName"></result>
+        <result column="url" property="url" ></result>
+    </collection>
+</resultMap>
+    <select id="queryPermissionByUid" resultMap="rolePermissionMap">
+      select r.*,p.id,p.permissionName,p.url from users u
+          left outer join users_role ur  on u.id = ur.userId
+          left outer join role r on r.id = ur.roleId
+          left outer join role_permission up on r.id = up.roleId
+          left outer join permission p on p.id = up.permissionId
+             where  u.id = #{id}
+    </select>
+    <!--为用户添加角色-->
+    <insert id="addRoleByUid">
+        insert ignore into users_role values
+        <foreach collection="ids"  separator=","  item="id">
+            (#{userId},#{id})
+        </foreach>
+    </insert>
+    <!--按角色id删除该角色和对应的权限-->
+    <delete id="deleteRoleById">
+        delete ur,r,rp from users_role ur
+          left  join role r on ur.roleId = r.id
+          left  join role_permission rp on rp.roleId = r.id
+          where r.id = #{id}
+    </delete>
+
+    <!--查询每个角色对应的每个权限-->
+    <select id="queryRolePermission" resultMap="role_permission">
+         select r.id rid,roleName,roleDesc,p.id pid,permissionName,url from role r
+           join role_permission rp on rp.roleId = r.id
+           join permission p on rp.permissionId = p.id
+    </select>
+    <resultMap id="role_permission" type="role">
+        <id column="rid" property="id"></id>
+        <result column="roleName" property="roleName"></result>
+        <result column="roleDesc" property="roleDesc"></result>
+        <result column="pid" property="permission.id"></result>
+        <result column="permissionName" property="permission.permissionName"></result>
+        <result column="url" property="permission.url"></result>
+    </resultMap>
+    <!--根据id删除权限-->
+    <delete id="deletePermissionsByIds">
+        delete rp,p from role_permission rp left join permission p on
+        rp.permissionId = p.id where p.id = #{id}
+    </delete>
+
+    <!--通过角色的id给该角色添加权限-->
+    <insert id="addPermissionByRid">
+        insert ignore into role_permission values
+        <foreach collection="ids"  separator=","  item="id">
+            (#{id},#{roleId})
+        </foreach>
+    </insert>
+</mapper>

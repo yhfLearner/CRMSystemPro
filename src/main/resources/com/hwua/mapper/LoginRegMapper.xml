@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.LoginRegMapper">
+  <select id="queryUserByUsername" resultType="users">
+      select * from users where username = #{username}
+  </select>
+    <insert id="addUsers">
+        insert into users(id,email,username,password,phoneNum,status) values(null,#{email},#{username},#{password},#{phoneNum},#{status})
+    </insert>
+</mapper>

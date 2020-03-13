@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.SysLogMapper">
+ <insert id="saveLog">
+     insert into syslog(id,visitTime,username,ip,url,executionTime,method) values(null,#{visitTime},#{username},#{ip},#{url},#{executionTime},#{method})
+ </insert>
+    <select id="queryAllLog" resultType="syslog">
+        select id,visitTime,userName,ip,url,executionTime,method from syslog
+    </select>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.ProductMessageMapper">
+    <select id="queryAllProducts" resultType="Product">
+      select id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus from product
+  </select>
+    <insert id="addProduct">
+        insert into product values(null,#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})
+    </insert>
+<!--    显示订单列表-->
+    <select id="queryProductDetailById" resultMap="t_map">
+        select p.id pid,productName,productPrice,o.productId oproductId,o.id oid,orderNum,orderTime,orderStatus from product p inner join orders o on p.id = o.productId where p.id = #{id}
+    </select>
+    <resultMap id="t_map" type="product">
+        <id column="pid" property="id"></id>
+        <result column="productName" property="productName"></result>
+        <result column="productPrice" property="productPrice"></result>
+        <result column="oproductId" property="orders.productId"></result>
+        <result column="oid" property="orders.id"></result>
+        <result column="orderNum" property="orders.orderNum"></result>
+        <result column="orderTime" property="orders.orderTime"></result>
+        <result column="orderStatus" property="orders.orderStatus"></result>
+    </resultMap>
+<!--    显示订单信息-->
+    <select id="queryDetailsByOrderId" resultMap="t_map1">
+        select p.id pid,productName,productPrice,cityName,departureTime,o.productId oproductId,o.id oid,orderNum,orderTime,orderDesc,peopleCount,payType from product p inner join orders o on p.id = o.productId where o.id = #{id}
+    </select>
+    <resultMap id="t_map1" type="product">
+        <id column="pid" property="id"></id>
+        <result column="productName" property="productName"></result>
+        <result column="productPrice" property="productPrice"></result>
+        <result column="cityName" property="cityName"></result>
+        <result column="departureTime" property="departureTime"></result>
+        <result column="oproductId" property="orders.productId"></result>
+        <result column="oid" property="orders.id"></result>
+        <result column="orderNum" property="orders.orderNum"></result>
+        <result column="orderTime" property="orders.orderTime"></result>
+        <result column="orderDesc" property="orders.orderDesc"></result>
+        <result column="peopleCount" property="orders.peopleCount"></result>
+        <result column="payType" property="orders.payType"></result>
+    </resultMap>
+<!--    通过订单id查找游客的id-->
+    <select id="getTravellerIdByOrderId" resultType="orderTraveller">
+        select * from order_traveller where orderId = #{id}
+    </select>
+<!--    查询游客信息-->
+    <select id="queryTravellerByTravellerId" resultType="traveller">
+        select travellerType,name,sex,phoneNum,credentialsType,credentialsNum from traveller where id=#{id}
+    </select>
+    <!--查询游客订单时服务的联系人信息-->
+    <select id="queryMemberByOrderId" resultMap="order_member">
+        select m.id mid,name,nickName,phoneNum,email,o.memberId omemberId from member m inner join orders o on m.id = o.memberId where o.id = #{id}
+    </select>
+    <resultMap id="order_member" type="orders">
+        <id column="omemberId" property="memberId"></id>
+        <result column="mid" property="member.id"></result>
+        <result column="name" property="member.name"></result>
+        <result column="nickName" property="member.nickName"></result>
+        <result column="phoneNum" property="member.phoneNum"></result>
+        <result column="email" property="member.email"></result>
+    </resultMap>
+
+    <!--查询所有信息-->
+    <select id="queryAllOrders" resultMap="t_map2">
+        select p.id pid,productName,productPrice,o.productId oproductId,o.id oid,orderNum,orderTime,orderStatus from product p inner join orders o on p.id = o.productId
+    </select>
+    <resultMap id="t_map2" type="product">
+        <id column="pid" property="id"></id>
+        <result column="productName" property="productName"></result>
+        <result column="productPrice" property="productPrice"></result>
+        <result column="oproductId" property="orders.productId"></result>
+        <result column="oid" property="orders.id"></result>
+        <result column="orderNum" property="orders.orderNum"></result>
+        <result column="orderTime" property="orders.orderTime"></result>
+        <result column="orderStatus" property="orders.orderStatus"></result>
+    </resultMap>
+
+    <!--通过产品id修改Status-->
+    <update id="updateStatusById">
+        update product set productStatus = #{productStatus}
+        where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </update>
+    <!--通过id删除产品信息-->
+    <delete id="deleteProductById">
+        delete from product where id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
