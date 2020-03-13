@@ -25,6 +25,7 @@ public class AddMVCConfig {
                 registry.addViewController("/pages/user-list.html").setViewName("pages/user-list");
                 registry.addViewController("/pages/role-add.html").setViewName("pages/role-add");
                 registry.addViewController("/pages/permission-list.html").setViewName("pages/permission-list");
+                registry.addViewController("/pages/permission-add.html").setViewName("pages/permission-add");
                 registry.addViewController("/403.html").setViewName("403");
 
 

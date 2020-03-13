@@ -50,6 +50,10 @@
 <link rel="stylesheet"
 	th:href="@{/css/style.css}">
 <link rel="stylesheet"
+          th:href="@{/css/alertify.core.css}">
+<link rel="stylesheet"
+          th:href="@{/css/alertify.default.css}">
+<link rel="stylesheet"
 	th:href="@{/plugins/ionslider/ion.rangeSlider.css}">
 <link rel="stylesheet"
 	th:href="@{/plugins/ionslider/ion.rangeSlider.skinNice.css}">
@@ -86,24 +90,25 @@
 			</section>
 			<!-- 内容头部 /-->
 
-			<form action="@{/role/save.do"
-				method="post">
+
 				<!-- 正文区域 -->
 				<section class="content"> <!--产品信息-->
 
 				<div class="panel panel-default">
 					<div class="panel-heading">角色信息</div>
+                    <div id="error"></div>
 					<div class="row data-type">
-
+                        <div id="info"></div>
+                        <div id="info1"></div>
 						<div class="col-md-2 title">角色名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleName"
-								placeholder="角色名称" value="">
+								placeholder="角色名称" value="" id="roleName">
 						</div>
 						<div class="col-md-2 title">角色描述</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleDesc"
-								placeholder="角色描述" value="">
+								placeholder="角色描述" value="" id="roleDesc">
 						</div>
 										
 
@@ -111,13 +116,12 @@
 				</div>
 				<!--订单信息/--> <!--工具栏-->
 				<div class="box-tools text-center">
-					<button type="submit" class="btn bg-maroon">保存</button>
+					<button type="submit" class="btn bg-maroon" id="btn_save">保存</button>
 					<button type="button" class="btn bg-default"
 						onclick="history.back(-1);">返回</button>
 				</div>
 				<!--工具栏/--> </section>
 				<!-- 正文区域 /-->
-			</form>
 		</div>
 		<!-- 内容区域 /-->
 
@@ -219,7 +223,94 @@
 		th:src="@{/plugins/bootstrap-slider/bootstrap-slider.js}"></script>
 	<script
 		th:src="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
+    <script th:src="@{/plugins/jQuery/alertify.js}"></script>
+    <script>
+        $(function () {
+            $("#btn_save").click(function () {
+                addNewRole();
+            });
+            $("#roleName").blur(function () {
 
+                    $.get("/user/validateRoleByRoleName", {"roleName": $("#roleName").val()}, function (data) {
+                        if (data.info != true || ($("#roleName").val() == "")) {
+                            $("#info").html("此角色已拥有,请勿重复添加或不能为空").css("color", "red");
+                        } else {
+                            $("#info").html("此角色可用").css("color", "green");
+                        }
+                    }, "json");
+
+            });
+        });
+
+        $("#roleDesc").blur(function () {
+            $.get("/user/validateRoleByRoleDesc", {"roleDesc": $("#roleDesc").val()}, function (data) {
+                if (data.info != true ||($("#roleDesc").val()=="")) {
+                    $("#info1").html("此url已经注册或不能为空").css("color", "red");
+                } else {
+                    $("#info1").html("此url可用").css("color", "green");
+                }
+            },"json");
+        });
+
+        function reset () {
+            alertify.set({
+                labels : {
+                    ok     : "确定",
+                    cancel : "取消"
+                },
+                delay : 5000,
+                buttonReverse : false,
+                buttonFocus   : "ok"
+            });
+        }
+        function addNewRole() {
+            if (validate()) {
+                reset();
+                alertify.confirm("是否确定添加新角色?",
+                    function (e) {
+                        if (e) {
+                            $.ajax({
+                                url: "/user/addNewRole",
+                                type: "post",
+                                traditional: true,
+                                dataType: "json",
+                                data: {
+                                    "roleName": $("#roleName").val(),
+                                    "roleDesc": $("#roleDesc").val()
+                                },
+                                success: function (data) {
+                                    if (data.info != true) {
+                                        alertify.error(data.info);
+                                    } else {
+                                        alertify.success("解锁了一个新的角色");
+                                        window.location.href = "/user/allRoles";
+                                    }
+                                }
+                            })
+
+                        } else {
+                            alertify.error("取消")
+                        }
+                    });
+                /*function(){
+                    alertify.error('取消');
+                });*/
+
+            }
+        }
+
+        function validate() {
+            if($("#roleName").val()==""){
+                $("#error").css("color", "red").html("角色名不能为空");
+                return false;//不用提交表单
+            }
+            if($("#roleDesc").val()==""){
+                $("#error").css("color", "red").html("角色描述不能为空");
+                return false;//不用提交表单
+            }
+            return  true;
+        }
+    </script>
 	<script>
 		$(document).ready(function() {
 			// 选择框

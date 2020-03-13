@@ -98,4 +98,29 @@
             (#{id},#{roleId})
         </foreach>
     </insert>
+    <!--添加一个不重复的角色-->
+    <insert id="addNewRole">
+        insert into role(id,roleName,roleDesc)  values(null,#{roleName},#{roleDesc})
+    </insert>
+    <!--通过roleName确定该角色是否存在-->
+    <select id="validateRoleByRoleName" resultType="role">
+        select id,roleName,roleDesc from role where roleName = #{roleName}
+    </select>
+    <!--通过roleDesc确定该角色是否存在-->
+    <select id="validateRoleByRoleDesc" resultType="role">
+        select id,roleName,roleDesc from role where roleDesc = #{roleDesc}
+    </select>
+
+    <!--添加一个不重复的权限-->
+    <insert id="addNewPermission">
+        insert into permission(id,permissionName,url)  values(null,#{permissionName},#{url})
+    </insert>
+    <!--通过permission确定该角色是否存在-->
+    <select id="validatePermissionByName" resultType="permission">
+        select id,permissionName,url from permission where permissionName = #{permissionName}
+    </select>
+    <!--通过url确定该角色是否存在-->
+    <select id="validatePermissionByUrl" resultType="permission">
+        select id,permissionName,url from permission where url = #{url}
+    </select>
 </mapper>

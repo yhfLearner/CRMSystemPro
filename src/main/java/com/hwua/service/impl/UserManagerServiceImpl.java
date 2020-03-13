@@ -63,4 +63,34 @@ public class UserManagerServiceImpl implements UserManagerService {
         return userMapper.deletePermissionsByIds(pid);
     }
 
+    @Override
+    public int addNewRole(Role role) throws Exception {
+        return userMapper.addNewRole(role);
+    }
+
+    @Override
+    public Role validateRoleByRoleName(String roleName) throws Exception {
+        return userMapper.validateRoleByRoleName(roleName);
+    }
+
+    @Override
+    public Role validateRoleByRoleDesc(String roleDesc) throws Exception {
+        return userMapper.validateRoleByRoleDesc(roleDesc);
+    }
+
+    @Override
+    public int addNewPermission(Permission permission) throws Exception {
+        return userMapper.addNewPermission(permission);
+    }
+
+    @Override
+    public Permission validatePermissionByName(String permissionName) throws Exception {
+        return userMapper.validatePermissionByName(permissionName);
+    }
+
+    @Override
+    public Permission validatePermissionByUrl(String url) throws Exception {
+        return userMapper.validatePermissionByUrl(url);
+    }
+
 }

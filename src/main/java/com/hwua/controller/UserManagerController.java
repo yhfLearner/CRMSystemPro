@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
+
 @Controller
 public class UserManagerController {
     @Autowired
@@ -72,6 +74,53 @@ public class UserManagerController {
         }
         return map;
     }
+    @PostMapping("/user/addNewRole")
+    @MyLog
+    @ResponseBody
+    public Map<String,Object> addNewRole(Role role) throws Exception{
+        Map<String,Object> map = new HashMap<>();
+        Role validateRole = userService.validateRoleByRoleName(role.getRoleName());
+        if(validateRole!=null){
+            map.put("info","已拥有相同的角色");
+        }else {
+            int res = userService.addNewRole(role);
+            if(res>0){
+                map.put("info",true);
+            }else {
+                map.put("info","添加该角色失败");
+            }
+        }
+
+        return map;
+    }
+    @GetMapping("user/validateRoleByRoleName")
+    @ResponseBody
+    @MyLog
+    public Map<String,Object> validateRoleByName(String roleName) throws Exception{
+        Map<String, Object> map = new HashMap<>();
+
+            Role role = userService.validateRoleByRoleName(roleName);
+            if(role!=null){
+                map.put("info",false);
+            }else {
+                map.put("info",true);
+            }
+
+        return map;
+    }
+    @GetMapping("user/validateRoleByRoleDesc")
+    @ResponseBody
+    @MyLog
+    public Map<String,Object> validateRoleByDesc(String roleDesc) throws Exception{
+        Map<String, Object> map = new HashMap<>();
+            Role role = userService.validateRoleByRoleDesc(roleDesc);
+            if(role!=null){
+                map.put("info",false);
+            }else {
+                map.put("info",true);
+            }
+        return map;
+    }
     @GetMapping("/user/allRoles")
     @MyLog
     public ModelAndView queryRoles() throws Exception{
@@ -80,7 +129,7 @@ public class UserManagerController {
         mv.addObject("roleList",roleList);
         return mv;
     }
-    @DeleteMapping("/user/deleteRole/{id}")
+    @GetMapping("/user/deleteRole/{id}")
     @MyLog
     public String deleteRole(@PathVariable("id") Integer id) throws Exception{
         int res = userService.deleteRoleById(id);
@@ -114,7 +163,6 @@ public class UserManagerController {
         return map;
     }
 
-
     @GetMapping("/user/rolePermission")
     @MyLog
     @ResponseBody
@@ -139,9 +187,51 @@ public class UserManagerController {
         return map;
     }
 
-    @GetMapping("/user/addPermission/{rid}")
-    public ModelAndView showAddPermissionView(@PathVariable("rid") Integer rid) throws Exception{
-        return new ModelAndView("pages/permission-add");
+    @PostMapping("/user/addNewPermission")
+    @MyLog
+    @ResponseBody
+    public Map<String,Object> addNewPermission(Permission permission) throws Exception{
+        Map<String,Object> map = new HashMap<>();
+        Permission validatePermission = userService.validatePermissionByName(permission.getPermissionName());
+        if(validatePermission!=null){
+            map.put("info","已拥有相同的权限");
+        }else {
+            int res = userService.addNewPermission(permission);
+            if(res>0){
+                map.put("info",true);
+            }else {
+                map.put("info","添加该权限失败");
+            }
+        }
+        return map;
+    }
+    @GetMapping("user/validatePermissionByName")
+    @ResponseBody
+    @MyLog
+    public Map<String,Object> validatePermissionByName(String permissionName) throws Exception{
+        Map<String, Object> map = new HashMap<>();
+
+        Permission permission = userService.validatePermissionByName(permissionName);
+        if(permission!=null){
+            map.put("info",false);
+        }else {
+            map.put("info",true);
+        }
+
+        return map;
+    }
+    @GetMapping("user/validatePermissionByUrl")
+    @ResponseBody
+    @MyLog
+    public Map<String,Object> validatePermissionByUrl(String url) throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        Permission permission = userService.validatePermissionByUrl(url);
+        if(permission!=null){
+            map.put("info",false);
+        }else {
+            map.put("info",true);
+        }
+        return map;
     }
 
     @GetMapping("/user/permissionDetail")

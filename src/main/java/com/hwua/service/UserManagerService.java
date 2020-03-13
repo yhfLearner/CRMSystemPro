@@ -19,4 +19,15 @@ public interface UserManagerService {
     public List<Permission> queryAllPermission() throws Exception;
     public List<Role> queryRolePermission() throws Exception;
     public int deletePermissionsByIds(Integer pid) throws Exception;
+    public int addNewRole(Role role) throws Exception;
+    //通过RoleName验证该角色是否存在
+    public Role validateRoleByRoleName(String roleName) throws Exception;
+    //通过RoleUrl验证该角色是否存在
+    public Role validateRoleByRoleDesc(String roleDesc) throws Exception;
+    //添加一个新的权限
+    public int addNewPermission(Permission permission) throws Exception;
+    //通过permissionName验证该权限是否存在
+    public Permission validatePermissionByName(String permissionName) throws Exception;
+    //通过url验证该权限是否存在
+    public Permission validatePermissionByUrl(String url) throws Exception;
 }
