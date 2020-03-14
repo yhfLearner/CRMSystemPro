@@ -37,6 +37,14 @@
     </select>
 
     <!--通过用户id查询用户角色所对应的权限-->
+    <select id="queryPermissionByUid" resultMap="rolePermissionMap">
+      select r.*,p.id,p.permissionName,p.url from users u
+          left outer join users_role ur  on u.id = ur.userId
+          left outer join role r on r.id = ur.roleId
+          left outer join role_permission up on r.id = up.roleId
+          left outer join permission p on p.id = up.permissionId
+             where  u.id = #{id}
+    </select>
     <resultMap id="rolePermissionMap" type="role">
     <id column="id" property="id"></id>
     <result column="roleName" property="roleName"></result>
@@ -48,14 +56,6 @@
         <result column="url" property="url" ></result>
     </collection>
 </resultMap>
-    <select id="queryPermissionByUid" resultMap="rolePermissionMap">
-      select r.*,p.id,p.permissionName,p.url from users u
-          left outer join users_role ur  on u.id = ur.userId
-          left outer join role r on r.id = ur.roleId
-          left outer join role_permission up on r.id = up.roleId
-          left outer join permission p on p.id = up.permissionId
-             where  u.id = #{id}
-    </select>
     <!--为用户添加角色-->
     <insert id="addRoleByUid">
         insert ignore into users_role values
@@ -123,4 +123,19 @@
     <select id="validatePermissionByUrl" resultType="permission">
         select id,permissionName,url from permission where url = #{url}
     </select>
+    <!--通过角色id查询所对应的角色-->
+    <select id="queryRoleDetailsById" resultMap="roleMap">
+        select r.id rid,r.roleName,p.id pid,p.permissionName,p.url  from role r
+	 left outer join role_permission rp  on r.id = rp.roleId
+	 left outer join permission p  on p.id = rp.permissionId where r.id = #{id}
+    </select>
+    <resultMap id="roleMap" type="role">
+        <id column="rid" property="id"></id>
+        <result column="roleName" property="roleName"></result>
+        <collection property="permissionList" javaType="list" ofType="permission">
+            <id column="pid" property="id"></id>
+            <result column="permissionName" property="permissionName"></result>
+            <result column="url" property="url"></result>
+        </collection>
+    </resultMap>
 </mapper>

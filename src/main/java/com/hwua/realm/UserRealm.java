@@ -41,12 +41,15 @@ public class UserRealm extends AuthorizingRealm {
         Users user = (Users) SecurityUtils.getSubject().getPrincipal();
         try {
             Users usersRole = userService.queryRolesByUid(user.getId());
-            Role rolePermission = userService.queryPermissionByUid(user.getId());
+            List<Role> rolePermission = userService.queryPermissionByUid(user.getId());
             for (Role role : usersRole.getRoleList()) {
                 authorizationInfo.addRole(role.getRoleName());
             }
-            for (Permission permission : rolePermission.getPermissionList()) {
-                authorizationInfo.addStringPermission(permission.getPermissionName());
+            for (Role role : rolePermission) {
+                List<Permission> permissionList = role.getPermissionList();
+                for (Permission permission : permissionList) {
+                    authorizationInfo.addStringPermission(permission.getPermissionName());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

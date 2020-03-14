@@ -24,7 +24,7 @@ public class UserManagerServiceImpl implements UserManagerService {
     }
 
     @Override
-    public Role queryPermissionByUid(Integer id) throws Exception {
+    public List<Role> queryPermissionByUid(Integer id) throws Exception {
         return userMapper.queryPermissionByUid(id);
     }
 
@@ -91,6 +91,11 @@ public class UserManagerServiceImpl implements UserManagerService {
     @Override
     public Permission validatePermissionByUrl(String url) throws Exception {
         return userMapper.validatePermissionByUrl(url);
+    }
+
+    @Override
+    public Role queryRoleDetailsById(Integer id) throws Exception {
+        return userMapper.queryRoleDetailsById(id);
     }
 
 }

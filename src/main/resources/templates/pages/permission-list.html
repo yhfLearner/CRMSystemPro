@@ -346,8 +346,8 @@
                 var $td4 = $("<td>" + role.permission.url + "</td>");
                 var $td5 = $(" <td class='text-center'>" +
                     " <button type='button' class='btn bg-olive btn-xs' onclick='window.location.href=\"/user/permissionDetail\"'>详情</button>" +
-                        "<button type='button' class='btn bg-olive btn-xs' onclick='window.location=\"/pages/permission-add.html\"'>添加新权限</button>"+
-            "<button type='button' class='btn bg-olive btn-xs' onclick='btn_del(\""+role.permission.id+"\")'>删除权限</button>"+
+                        "<shiro:hasAnyRoles name='admin,superAdmin'><button type='button' class='btn bg-olive btn-xs' onclick='window.location=\"/pages/permission-add.html\"'>添加新权限</button></shiro:hasAnyRoles>"+
+                 "<shiro:hasRole name='superAdmin'>　<button type='button' class='btn bg-olive btn-xs' onclick='btn_del(\""+role.permission.id+"\")'>删除权限</button></shiro:hasRole>"+
             " </td>");
         $tr.append($td1).append($td2).append($td3).append($td4).append($td5);
         $("#tbody").append($tr);

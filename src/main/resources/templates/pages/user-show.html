@@ -132,21 +132,22 @@
                                     <th>描述</th>
                                 </tr>
                                 </thead>
-                                <tr data-tt-id="0" th:each="user:${usersRoles}">
-                                    <td colspan="2" th:text="${user.username}"></td>
+                                <tr data-tt-id="0">
+                                    <td colspan="2" th:text="${userRole.username}"></td>
                                 </tr>
 
                                 <tbody>
 
-                                    <tr th:data-tt-id="${roleStat.count}" data-tt-parent-id="0" th:each="role,roleStat:${usersRoles.get(0).roleList}">
-                                        <td th:text="${role.roleName}"></td>
-                                        <td th:text="${role.roleDesc}"></td>
-                                    </tr>
-
-                                        <tr data-tt-id="1-1" th:data-tt-parent-id="${permissionStat.count}" th:each="permission,permissionStat:${rolesPermission.get(0).permissionList}">
-                                            <td th:text="${permission.permissionName}">${permission.permissionName}</td>
-                                            <td th:text="${permission.url}">${permission.url}</td>
-                                        </tr>
+                                <tr data-tt-id="${vs1.index+1}" data-tt-parent-id="0" th:each="role:${userRole.roleList}">
+                                <td th:text="${role.roleName}">${role.roleName }</td>
+                                <td th:text="${role.roleDesc}">${role.roleDesc }</td>
+                                </tr>
+                                <tr th:data-tt-id="${roleStat.count}"
+                                    data-tt-parent-id="${vs1.index+1}" th:each="role,roleStat:${rolesList}">
+                                    <td th:text="${role.getPermissionList().get(roleStat.count).permissionName}">${permission.permissionName}</td>
+                                    <td th:text="${role.getPermissionList().get(roleStat.count).url}">${permission.url}</td>
+                                    <tr>
+                                </tr>
                                    <!-- <tr th:data-tt-id="${roleStat.count}" data-tt-parent-id="0" th:each="role,roleStat:${usersRoles}">
                                         <td th:text="${role.}"></td>
                                         <td th:text="${roleList.get(roleStat.count).roleName}"></td>

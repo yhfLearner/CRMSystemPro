@@ -198,19 +198,19 @@
 						<div class="pull-left">
 							<div class="form-group form-inline">
 								<div class="btn-group">
-									<button type="button" class="btn btn-default" title="新建"
+                                    <shiro:hasPermission name="product:add"><button type="button" class="btn btn-default" title="新建"
 											onclick="location.href='product-add.html'"><i
 											class="fa fa-file-o"></i> 新建
-									</button>
-									<button type="button" class="btn btn-default" title="删除" id="btn_del"><i
+                                    </button></shiro:hasPermission>
+                                        <shiro:hasPermission name="product:delProduct"><button type="button" class="btn btn-default" title="删除" id="btn_del"><i
 											class="fa fa-trash-o"></i> 删除
-									</button>
-									<button type="button" class="btn btn-default" title="开启" id="btn_open"><i class="fa fa-check"></i>
+                                        </button></shiro:hasPermission>
+                                    <shiro:hasPermission name="product:query"><button type="button" class="btn btn-default" title="开启" id="btn_open"><i class="fa fa-check"></i>
 										开启
 									</button>
 									<button type="button" class="btn btn-default" title="屏蔽" id="btn_close"><i class="fa fa-ban"></i>
 										屏蔽
-									</button>
+									</button></shiro:hasPermission>
 									<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload()"><i
 											class="fa fa-refresh"></i> 刷新
 									</button>

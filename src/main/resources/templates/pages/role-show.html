@@ -133,13 +133,13 @@
                                 </tr>
                                 </thead>
                                 <tr data-tt-id="0">
-                                    <td colspan="2">${role.roleName}</td>
+                                    <td colspan="2" th:text="${role.roleName}"></td>
                                 </tr>
 
                                 <tbody>
-                                    <tr data-tt-id="${vs1.index+1}" data-tt-parent-id="0">
-                                        <td>${permission.permissionName }</td>
-                                        <td>${permission.url }</td>
+                                    <tr data-tt-id="${vs1.index+1}" data-tt-parent-id="0" th:each="permission:${role.permissionList}">
+                                        <td th:text="${permission.permissionName}">${permission.permissionName }</td>
+                                        <td th:text="${permission.url}">${permission.url }</td>
                                     </tr>
                                 </tbody>
                             </table>

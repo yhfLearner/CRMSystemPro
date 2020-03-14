@@ -14,7 +14,7 @@ public interface UserManagerMapper {
     //通过用户id查询对应的角色
     public Users queryRolesByUid(Integer id) throws Exception;
     //通过用户id查询对应的权限
-    public Role queryPermissionByUid(Integer id) throws Exception;
+    public List<Role> queryPermissionByUid(Integer id) throws Exception;
     //查询所有的角色
     public List<Role> queryAllRoles() throws Exception;
     //通过用户id为该用户添加角色
@@ -41,5 +41,7 @@ public interface UserManagerMapper {
     public Permission validatePermissionByName(String permissionName) throws Exception;
     //通过url验证该权限是否存在
     public Permission validatePermissionByUrl(String url) throws Exception;
+    //通过角色id查询对应的权限
+    public Role queryRoleDetailsById(Integer id) throws Exception;
 
 }

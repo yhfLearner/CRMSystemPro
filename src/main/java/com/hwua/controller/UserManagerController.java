@@ -38,17 +38,15 @@ public class UserManagerController {
     @MyLog
     public ModelAndView queryAllDetail(@PathVariable("uid") Integer uid) throws Exception{
         ModelAndView mv = new ModelAndView("pages/user-show");
-        List<Users> usersList = new ArrayList<>();
-        List<Role> roleList = new ArrayList<>();
+        List<Permission> permissionList = new ArrayList<>();
         Users usersRole = userService.queryRolesByUid(uid);
-        usersList.add(usersRole);
-        Role rolesPermission = userService.queryPermissionByUid(uid);
-        roleList.add(rolesPermission);
-       /* mv.addObject("roleList",roleList);
-        mv.addObject("permissionList",permissionList);*/
-        mv.addObject("usersRoles",usersList);
-        mv.addObject("rolesPermission",roleList);
-        System.out.println(usersRole);
+        List<Role> rolesList = userService.queryPermissionByUid(uid);
+    /*    for (Role role : rolesList) {
+             permissionList = role.getPermissionList();
+        }
+        System.out.println(permissionList.size());*/
+        mv.addObject("userRole",usersRole);
+        mv.addObject("rolesList",rolesList);
         return mv;
     }
     @GetMapping("/user/queryRoles/{uid}")
@@ -240,6 +238,14 @@ public class UserManagerController {
         ModelAndView mv = new ModelAndView("pages/permission-show");
         List<Permission> permissionList = userService.queryAllPermission();
         mv.addObject("permissionList",permissionList);
+        return mv;
+    }
+    @GetMapping("/user/roleDetail/{rid}")
+    @MyLog
+    public ModelAndView showRole(@PathVariable("rid") Integer rid) throws Exception{
+        ModelAndView mv = new ModelAndView("pages/role-show");
+        Role role = userService.queryRoleDetailsById(rid);
+        mv.addObject("role",role);
         return mv;
     }
 }

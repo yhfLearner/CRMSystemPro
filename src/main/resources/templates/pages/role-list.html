@@ -147,9 +147,9 @@
                                 <td th:text="${role.roleName}">admin</td>
                                 <td th:text="${role.roleDesc}">管理员</td>
                                 <td class="text-center">
-                                    <a th:href="@{/pages/role-show.html}" class="btn bg-olive btn-xs">详情</a>
-                                    <a shiro:hasAnyRoles="superAdmin" onclick="btn_del()" class="btn bg-olive btn-xs">删除角色</a>
-                                    <a th:href="@{/pages/role-add.html}" class="btn bg-olive btn-xs">添加全新角色</a>
+                                    <a th:href="@{/user/roleDetail/}+${role.id}" class="btn bg-olive btn-xs">详情</a>
+                                <shiro:hasPermission name="role:delete"><a  onclick="btn_del()" class="btn bg-olive btn-xs">删除角色</a></shiro:hasPermission>
+                                    <shiro:hasPermission name="user:add"><a th:href="@{/pages/role-add.html}" class="btn bg-olive btn-xs">添加全新角色</a></shiro:hasPermission>
                                 </td>
                             </tr>
 

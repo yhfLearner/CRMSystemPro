@@ -11,7 +11,7 @@ public interface UserManagerService {
     public List<Users> queryAllUsers() throws Exception;
 
     public Users queryRolesByUid(Integer id) throws Exception;
-    public Role queryPermissionByUid(Integer id) throws Exception;
+    public List<Role> queryPermissionByUid(Integer id) throws Exception;
     public List<Role> queryAllRoles() throws Exception;
     public int addRoleByUid(Integer uid,Integer[] ids) throws Exception;
     public int deleteRoleById(Integer id) throws Exception;
@@ -30,4 +30,5 @@ public interface UserManagerService {
     public Permission validatePermissionByName(String permissionName) throws Exception;
     //通过url验证该权限是否存在
     public Permission validatePermissionByUrl(String url) throws Exception;
+    public Role queryRoleDetailsById(Integer id) throws Exception;
 }
