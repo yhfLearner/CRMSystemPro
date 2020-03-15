@@ -26,13 +26,17 @@ import java.sql.Timestamp;
 public class SysLogAspect {
     @Autowired
     private SysLogService sysLogService;
+    private long startTime;
 
     //定义切点 @Pointcut
     //在注解的位置切入代码
     @Pointcut("@annotation(com.hwua.log.MyLog)")
     public void logPointCut() {
     }
-
+    @Before("logPointCut()")
+    public void doBefore(JoinPoint joinPoint) {
+        startTime = System.currentTimeMillis();
+    }
     //切面 配置通知
     @AfterReturning("logPointCut()")
     public void saveOperation(JoinPoint joinPoint) throws Exception {
@@ -44,9 +48,8 @@ public class SysLogAspect {
         //获取请求的方法名
         String methodName = method.getName();
         syslog.setMethod(methodName);
-        long startTime = System.currentTimeMillis();
-        long endTime = System.currentTimeMillis();
-        int executionTime = (int) (endTime-startTime);
+        long  executionTime = System.currentTimeMillis()-startTime;
+
         syslog.setExecutionTime(executionTime);
         syslog.setVisitTime(new Timestamp(System.currentTimeMillis()));
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();

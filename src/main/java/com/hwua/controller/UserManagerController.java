@@ -41,12 +41,12 @@ public class UserManagerController {
         List<Permission> permissionList = new ArrayList<>();
         Users usersRole = userService.queryRolesByUid(uid);
         List<Role> rolesList = userService.queryPermissionByUid(uid);
-    /*    for (Role role : rolesList) {
+        for (Role role : rolesList) {
              permissionList = role.getPermissionList();
         }
-        System.out.println(permissionList.size());*/
+        System.out.println(permissionList.size());
         mv.addObject("userRole",usersRole);
-        mv.addObject("rolesList",rolesList);
+        mv.addObject("permissionList",permissionList);
         return mv;
     }
     @GetMapping("/user/queryRoles/{uid}")

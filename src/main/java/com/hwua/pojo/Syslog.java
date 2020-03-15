@@ -17,7 +17,7 @@ public class Syslog implements Serializable {
   private String username;
   private String ip;
   private String url;
-  private int executionTime;
+  private long executionTime;
   private String method;
 
 }

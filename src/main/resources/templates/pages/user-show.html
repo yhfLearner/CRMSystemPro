@@ -142,10 +142,10 @@
                                 <td th:text="${role.roleName}">${role.roleName }</td>
                                 <td th:text="${role.roleDesc}">${role.roleDesc }</td>
                                 </tr>
-                                <tr th:data-tt-id="${roleStat.count}"
-                                    data-tt-parent-id="${vs1.index+1}" th:each="role,roleStat:${rolesList}">
-                                    <td th:text="${role.getPermissionList().get(roleStat.count).permissionName}">${permission.permissionName}</td>
-                                    <td th:text="${role.getPermissionList().get(roleStat.count).url}">${permission.url}</td>
+                                <tr data-tt-id="${vs1.index+1}-${vs2.index+1}"
+                                    data-tt-parent-id="${vs1.index+1}" th:each="permission:${permissionList}">
+                                    <td th:text="${permission.permissionName}">${permission.permissionName}</td>
+                                    <td th:text="${permission.url}">${permission.url}</td>
                                     <tr>
                                 </tr>
                                    <!-- <tr th:data-tt-id="${roleStat.count}" data-tt-parent-id="0" th:each="role,roleStat:${usersRoles}">
