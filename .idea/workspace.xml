@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40b7af24-ae91-4186-8391-a3c8f0537a2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pages/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pages/user-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,10 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
+            <state relative-caret-position="61">
               <caret line="151" column="67" selection-start-line="151" selection-start-column="67" selection-end-line="151" selection-end-column="67" />
             </state>
           </provider>
@@ -56,11 +55,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-permission-add.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="271" column="44" selection-start-line="271" selection-start-column="40" selection-end-line="271" selection-end-column="44" />
+            <state relative-caret-position="2574">
+              <caret line="240" column="11" lean-forward="true" selection-start-line="240" selection-start-column="11" selection-end-line="240" selection-end-column="11" />
               <folding>
                 <element signature="e#3177#3203#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/exceptionhandler/SysException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -181,7 +189,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hwua/mapper/ProductMessageMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hwua/service/impl/LuceneServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hwua/controller/ProductController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/pages/role-permission-add.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pages/user-role-add.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pages/role-add.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/hwua/config/AddMVCConfig.java" />
@@ -201,6 +208,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hwua/controller/UserManagerController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pages/user-list.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/pages/role-permission-add.html" />
       </list>
     </option>
   </component>
@@ -266,30 +274,6 @@
               <item name="crm_system" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm_system" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm_system" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crm_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crm_system" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -393,7 +377,7 @@
       <workItem from="1584327269119" duration="163000" />
       <workItem from="1584428152581" duration="1946000" />
       <workItem from="1584545249569" duration="1679000" />
-      <workItem from="1584579753235" duration="3641000" />
+      <workItem from="1584579753235" duration="4212000" />
     </task>
     <task id="LOCAL-00001" summary="用springboot完成crm系统">
       <created>1584096928414</created>
@@ -465,15 +449,28 @@
       <option name="project" value="LOCAL" />
       <updated>1584589851154</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修改相关内容">
+      <created>1584590565858</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1584590565858</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修改相关内容">
+      <created>1584590597316</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1584590597316</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295515000" />
+    <option name="totallyTimeSpent" value="296086000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.28485253" />
       <window_info id="Structure" order="1" sideWeight="0.5007072" side_tool="true" weight="0.20174263" />
@@ -729,20 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/exceptionhandler/SysException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/exceptionhandler/MyExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/config/LuceneConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-154">
@@ -929,13 +912,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-permission-add.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/user-show.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="271" column="44" selection-start-line="271" selection-start-column="40" selection-end-line="271" selection-end-column="44" />
-          <folding>
-            <element signature="e#3177#3203#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="22">
+          <caret line="135" column="51" lean-forward="true" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -949,17 +929,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/user-show.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="135" column="51" lean-forward="true" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
+        <state relative-caret-position="61">
+          <caret line="151" column="67" selection-start-line="151" selection-start-column="67" selection-end-line="151" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-list.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/pages/role-permission-add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="151" column="67" selection-start-line="151" selection-start-column="67" selection-end-line="151" selection-end-column="67" />
+        <state relative-caret-position="2574">
+          <caret line="240" column="11" lean-forward="true" selection-start-line="240" selection-start-column="11" selection-end-line="240" selection-end-column="11" />
+          <folding>
+            <element signature="e#3177#3203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/exceptionhandler/MyExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hwua/exceptionhandler/SysException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
