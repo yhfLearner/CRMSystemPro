@@ -149,6 +149,7 @@
                                 <td class="text-center">
                                     <a th:href="@{/user/roleDetail/}+${role.id}" class="btn bg-olive btn-xs">详情</a>
                                 <shiro:hasPermission name="role:delete"><a  th:href="@{/user/deleteRole/}+${role.id}" class="btn bg-olive btn-xs">删除角色</a></shiro:hasPermission>
+                                    <shiro:hasPermission name="user:add"><a  th:href="@{/user/addPermission/}+${role.id}" class="btn bg-olive btn-xs">添加权限</a></shiro:hasPermission>
                                 </td>
                             </tr>
 

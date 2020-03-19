@@ -310,6 +310,7 @@
 					var $td7 = $(" <td class='text-center'>" +
 							" <button type='button' class='btn bg-olive btn-xs' onclick='getUserId(\""+users.id+"\")'>详情</button>" +
 							" <shiro:hasPermission name='user:add'><button type='button' class='btn bg-olive btn-xs' onclick='addRoleByUid(\""+users.id+"\")'>添加角色</button></shiro:hasPermission>"+
+                            " <button type='button' class='btn bg-olive btn-xs' onclick='window.location.href=\"/pages/user-add.html\"'>添加用户</button></shiro:hasPermission>"+
 							" </td>");
 					$tr.append($td1).append($td2).append($td3).append($td4).append($td5).append($td6).append($td7);
 					$("#tbody").append($tr);
