@@ -11,7 +11,8 @@ public interface ProductMessageMapper {
     //查询所有的旅游信息
     public List<Product> queryAllProducts() throws Exception;
     //添加一条旅游信息
-    public int addProduct(Product product) throws Exception;
+    public int addProduct(@Param("productNum") String productNum,@Param("productName") String productName,@Param("departureTime") String departureTime,@Param("cityName") String cityName,
+                          @Param("productPrice") Double productPrice,@Param("productDesc")String productDesc,@Param("productStatus")Integer productStatus) throws Exception;
     public List<Product> queryProductDetailById(Integer id) throws Exception;
     //通过订单的id获得游客的id
     public List<OrderTraveller> getTravellerIdByOrderId(Integer orderId);

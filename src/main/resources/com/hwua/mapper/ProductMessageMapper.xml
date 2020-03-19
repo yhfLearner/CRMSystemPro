@@ -7,7 +7,8 @@
       select id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus from product
   </select>
     <insert id="addProduct">
-        insert into product values(null,#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})
+        insert into product(id,productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)
+           values(null,#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})
     </insert>
 <!--    显示订单列表-->
     <select id="queryProductDetailById" resultMap="t_map">

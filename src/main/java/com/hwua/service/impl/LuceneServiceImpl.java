@@ -77,7 +77,7 @@ public class LuceneServiceImpl implements LuceneService {
             String cityName = document.get("cityName");
             String productDesc = document.get("productDesc");
             String departureTime = document.get("departureTime");
-            Timestamp timestamp = Timestamp.valueOf(departureTime);
+            //Timestamp timestamp = Timestamp.valueOf(departureTime);
             String productNum = document.get("productNum");
             String productStatus = document.get("productStatus");
             String productPrice = document.get("productPrice");
@@ -86,7 +86,7 @@ public class LuceneServiceImpl implements LuceneService {
             product.setProductName(productName);
             product.setCityName(cityName);
             product.setProductDesc(productDesc);
-            product.setDepartureTime(timestamp);
+            product.setDepartureTime(departureTime);
             product.setProductNum(productNum);
             product.setProductStatus(Integer.parseInt(productStatus));
             product.setProductPrice(Double.parseDouble(productPrice));

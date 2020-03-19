@@ -88,8 +88,7 @@
 			</section>
 			<!-- 内容头部 /-->
 
-			<form action="#"
-				method="post">
+
 				<!-- 正文区域 -->
 				<section class="content"> <!--产品信息-->
 
@@ -149,46 +148,13 @@
 				</div>
 				<!--订单信息/--> <!--工具栏-->
 				<div class="box-tools text-center">
-					<button type="submit" class="btn bg-maroon">保存</button>
+					<button type="submit" class="btn bg-maroon" id="btn_save">保存</button>
 					<button type="button" class="btn bg-default"
 						onclick="history.back(-1);">返回</button>
 				</div>
 				<!--工具栏/--> </section>
 				<!-- 正文区域 /-->
-			</form>
 		</div>
-		<script>
-			$(function () {
-				var $productNum,$productName,$datepicker_a3,$cityName,$productPrice,$productStatus,$productDesc;
-				$productNum = $("#productNum").val;
-				$productName = $("#productName").val;
-				$datepicker_a3 = $("#datepicker-a3").val;
-				$cityName = $("#cityName").val;
-				$productPrice = $("#productPrice").val;
-				$productStatus = $("#productStatus").val;
-				$productDesc = $("#productDesc").val;
-				$(".btn bg-maroon").click(function () {
-					$.post("/product/addPro",{
-						"productNum":$productNum,
-						"productName":$productName,
-						"departureTime":$datepicker_a3,
-						"cityName":$cityName,
-						"productPrice":$productPrice,
-						"productStatus":$productStatus,
-						"productDesc":$productDesc
-					},function (data) {
-						if(data.info==null){
-							alert("添加失败");
-							window.location.href='pages/product-add.html';
-						}else {
-							window.location.href='pages/product-list.html';
-						}
-					})
-				});
-
-
-			})
-		</script>
 		<!-- 内容区域 /-->
 
 		<!-- 底部导航 -->
@@ -290,6 +256,38 @@
 	<script
 		th:src="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
 
+    <script>
+        $(function () {
+            var $productNum,$productName,$datepicker_a3,$cityName,$productPrice,$productStatus,$productDesc;
+            $productNum = $("#productNum");
+            $productName = $("#productName");
+            $datepicker_a3 = $("#datepicker-a3");
+            $cityName = $("#cityName");
+            $productPrice = $("#productPrice");
+            $productStatus = $("#productStatus");
+            $productDesc = $("#productDesc");
+            $("#btn_save").click(function () {
+                $.post("/product/addPro",{
+                    "productNum":$productNum.val(),
+                    "productName":$productName.val(),
+                    "departureTime":$datepicker_a3.val(),
+                    "cityName":$cityName.val(),
+                    "productPrice":$productPrice.val(),
+                    "productDesc":$productDesc.val(),
+                    "productStatus":$productStatus.val()
+                },function (data) {
+                    if(data.info==null){
+                        alert("添加失败");
+                        window.location.href='/pages/product-add.html';
+                    }else {
+                        window.location.href='/pages/product-list.html';
+                    }
+                })
+            });
+
+
+        })
+    </script>
 	<script>
 		$(document).ready(function() {
 			// 选择框
@@ -312,7 +310,7 @@
 
 		$(document).ready(function() {
 			$('#datepicker-a3').datetimepicker({
-				format : "yyyy-mm-dd hh:ii",
+				format : "yyyy-mm-dd hh:ii:ss",
 				autoclose : true,
 				todayBtn : true,
 				language : "zh-CN"

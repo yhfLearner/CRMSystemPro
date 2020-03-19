@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ProductMessageService {
     public List<Product> queryAllProducts() throws Exception;
-    public int addProduct(Product product) throws Exception;
+    public int addProduct(String productNum,String productName,String departureTime,String cityName,
+                           Double productPrice,String productDesc,Integer productStatus) throws Exception;
     public List<Product> queryProductDetailById(Integer id) throws Exception;
 
     public List<OrderTraveller> getTravellerIdByOrderId(Integer orderId);

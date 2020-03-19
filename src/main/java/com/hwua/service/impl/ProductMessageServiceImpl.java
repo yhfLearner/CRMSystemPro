@@ -17,8 +17,9 @@ public class ProductMessageServiceImpl implements ProductMessageService {
     }
 
     @Override
-    public int addProduct(Product product) throws Exception {
-       return productMessageMapper.addProduct(product);
+    public int addProduct(String productNum,String productName,String departureTime,String cityName,
+                          Double productPrice,String productDesc,Integer productStatus) throws Exception {
+       return productMessageMapper.addProduct(productNum, productName, departureTime, cityName, productPrice, productDesc, productStatus);
     }
 
     @Override

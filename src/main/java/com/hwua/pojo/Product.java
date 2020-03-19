@@ -15,8 +15,8 @@ public class Product {
   private String productNum;
   private String productName;
   private String cityName;
-  private Timestamp departureTime;
-  private double productPrice;
+  private String departureTime;
+  private Double productPrice;
   private String productDesc;
   private Integer productStatus;
   private Orders orders;

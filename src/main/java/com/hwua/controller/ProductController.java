@@ -28,15 +28,16 @@ public class ProductController {
         PageInfo<Product> pageInfo = new PageInfo<>(productList);
         return pageInfo;
     }
+
     @PostMapping("/product/addPro")
     @MyLog
-    public Map<String,Object> addPro(Product product,@RequestParam("departureTime") String strTme,@RequestParam("productPrice") String productPrice) throws Exception{
+    @ResponseBody
+    public Map<String,Object> addPro(@RequestParam("productNum")String productNum,@RequestParam("productName")String productName,@RequestParam("departureTime")String departureTime,@RequestParam("cityName")String cityName,
+            @RequestParam("productPrice") Double productPrice,@RequestParam("productDesc")String productDesc,@RequestParam("productStatus")Integer productStatus) throws Exception{
         Map<String,Object> map = new HashMap<>();
-        System.out.println(strTme);
-        product.setProductPrice(Double.parseDouble(productPrice));
-        Timestamp ts = Timestamp.valueOf(strTme);
-        product.setDepartureTime(ts);
-        if( promService.addProduct(product)>0){
+        System.out.println(productName);
+        int res = promService.addProduct(productNum, productName, departureTime, cityName, productPrice, productDesc, productStatus);
+        if( res>0){
            map.put("info","成功");
 
        }else {
