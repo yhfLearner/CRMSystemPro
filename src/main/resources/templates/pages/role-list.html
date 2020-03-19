@@ -104,10 +104,10 @@
                         <div class="pull-left">
                             <div class="form-group form-inline">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建"
-                                            onclick="window.location='role-add.html'">
+                                    <shiro:hasPermission name="user:add"><button type="button" class="btn btn-default" title="新建"
+                                            onclick="window.location='/pages/role-add.html'">
                                         <i class="fa fa-file-o"></i> 新建
-                                    </button>
+                                    </button></shiro:hasPermission>
 
                                     <button type="button" class="btn btn-default" title="刷新">
                                         <i class="fa fa-refresh"></i> 刷新
@@ -149,7 +149,6 @@
                                 <td class="text-center">
                                     <a th:href="@{/user/roleDetail/}+${role.id}" class="btn bg-olive btn-xs">详情</a>
                                 <shiro:hasPermission name="role:delete"><a  th:href="@{/user/deleteRole/}+${role.id}" class="btn bg-olive btn-xs">删除角色</a></shiro:hasPermission>
-                                    <shiro:hasPermission name="user:add"><a th:href="@{/pages/role-add.html}" class="btn bg-olive btn-xs">添加全新角色</a></shiro:hasPermission>
                                 </td>
                             </tr>
 
