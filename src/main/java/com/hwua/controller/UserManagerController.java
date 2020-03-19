@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 
 @Controller
 public class UserManagerController {
@@ -44,7 +43,7 @@ public class UserManagerController {
             for (Role role : rolesList) {
                 permissionList = role.getPermissionList();
             }
-        System.out.println(permissionList.size());
+        /*System.out.println(permissionList.size());*/
         mv.addObject("userRole",usersRole);
         mv.addObject("permissionList",permissionList);
         return mv;

@@ -5,7 +5,7 @@
 <mapper namespace="com.hwua.mapper.UserManagerMapper">
     <!--查询所有用户的信息-->
   <select id="queryAllUsers" resultType="users">
-      select id,email,username,password,phoneNum,status from users
+      select id,email,username,password,phoneNum,status from users order by id desc
   </select>
     <!--查询所有的角色-->
     <select id="queryAllRoles" resultType="role">
