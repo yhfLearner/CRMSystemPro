@@ -618,7 +618,8 @@
 			return false;
 		}else{
 			alertify.confirm("是否确定删除?",
-					function(){
+					function(e){
+                        if (e) {
 						$.ajax({
 							url : "/product/deleteProduct",
 							type:"post",
@@ -632,9 +633,10 @@
 								pagination(currPage,$("#pageSize").val());
 							}
 						})
-					},
-					function(){
-						alertify.error('取消');
+                            alertify.success("删除成功")
+                        }else {
+                            alertify.error("取消")
+                        }
 					});
 		}
 	}
